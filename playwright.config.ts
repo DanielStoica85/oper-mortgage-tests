@@ -12,6 +12,7 @@ import { defineConfig, devices } from "@playwright/test";
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
+  globalSetup: require.resolve("./global-setup"),
   testDir: "./tests",
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -25,6 +26,7 @@ export default defineConfig({
   reporter: "html",
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
+    storageState: "state.json",
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "on-first-retry",
     /* Take a screenshot on failure */
@@ -37,7 +39,8 @@ export default defineConfig({
       name: "base",
       use: {
         ...devices["Desktop Chrome"],
-        baseURL: "https://dem-report-base-self-service.operengineering.com",
+        baseURL: "https://demo-report-base-self-service.operengineering.com",
+        storageState: "storage/baseState.json",
       },
     },
     {
@@ -45,14 +48,8 @@ export default defineConfig({
       use: {
         ...devices["Desktop Chrome"],
         baseURL: "https://demo-report-delta-self-service.operengineering.com",
+        storageState: "storage/deltaState.json",
       },
     },
   ],
-
-  /* Run your local dev server before starting the tests */
-  // webServer: {
-  //   command: 'npm run start',
-  //   url: 'http://localhost:3000',
-  //   reuseExistingServer: !process.env.CI,
-  // },
 });
