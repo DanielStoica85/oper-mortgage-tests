@@ -37,16 +37,14 @@ export default defineConfig({
       name: "base",
       use: {
         ...devices["Desktop Chrome"],
-        baseURL:
-          "https://demo-report-base-self-service.operengineering.com/app/simulation",
+        baseURL: "https://dem-report-base-self-service.operengineering.com",
       },
     },
     {
       name: "delta",
       use: {
         ...devices["Desktop Chrome"],
-        baseURL:
-          "https://demo-report-delta-self-service.operengineering.com/app/simulation",
+        baseURL: "https://demo-report-delta-self-service.operengineering.com",
       },
     },
   ],
